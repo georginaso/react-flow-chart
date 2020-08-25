@@ -1,19 +1,30 @@
-import * as React from 'react'
-import { generateCurvePath, generateRightAnglePath, generateSmartPath, IConfig, ILink, IOnLinkClick, IOnLinkMouseEnter, IOnLinkMouseLeave, IPort, IPosition } from '../../'
+import * as React from "react";
+import {
+  generateCurvePath,
+  generateRightAnglePath,
+  generateSmartPath,
+  IConfig,
+  ILink,
+  IOnLinkClick,
+  IOnLinkMouseEnter,
+  IOnLinkMouseLeave,
+  IPort,
+  IPosition,
+} from "../../";
 
 export interface ILinkDefaultProps {
-  config: IConfig
-  link: ILink
-  startPos: IPosition
-  endPos: IPosition
-  fromPort: IPort
-  toPort?: IPort
-  onLinkMouseEnter: IOnLinkMouseEnter
-  onLinkMouseLeave: IOnLinkMouseLeave
-  onLinkClick: IOnLinkClick
-  isHovered: boolean
-  isSelected: boolean
-  matrix?: number[][]
+  config: IConfig;
+  link: ILink;
+  startPos: IPosition;
+  endPos: IPosition;
+  fromPort: IPort;
+  toPort?: IPort;
+  onLinkMouseEnter: IOnLinkMouseEnter;
+  onLinkMouseLeave: IOnLinkMouseLeave;
+  onLinkClick: IOnLinkClick;
+  isHovered: boolean;
+  isSelected: boolean;
+  matrix?: number[][];
 }
 
 export const LinkDefault = ({
@@ -30,26 +41,33 @@ export const LinkDefault = ({
   isSelected,
   matrix,
 }: ILinkDefaultProps) => {
+  const points = config.smartRouting
+    ? !!toPort && !!matrix
+      ? generateSmartPath(matrix, startPos, endPos, fromPort, toPort)
+      : generateRightAnglePath(startPos, endPos)
+    : generateCurvePath(startPos, endPos);
 
-  const points = config.smartRouting ?
-    !!toPort && !!matrix ? generateSmartPath(matrix, startPos, endPos, fromPort, toPort) : generateRightAnglePath(startPos, endPos)
-    : generateCurvePath(startPos, endPos)
-
-  const linkColor: string = (fromPort.properties && fromPort.properties.linkColor) || 'cornflowerblue'
+  const linkColor: string =
+    (fromPort.properties && fromPort.properties.linkColor) || "cornflowerblue";
+  const linkStrokeWidth: string =
+    (fromPort.properties && fromPort.properties.linkStrokeWidth) || "3";
 
   return (
-    <svg style={{ overflow: 'visible', position: 'absolute', cursor: 'pointer', left: 0, right: 0 }}>
-      <circle
-        r="4"
-        cx={startPos.x}
-        cy={startPos.y}
-        fill={linkColor}
-      />
+    <svg
+      style={{
+        overflow: "visible",
+        position: "absolute",
+        cursor: "pointer",
+        left: 0,
+        right: 0,
+      }}
+    >
+      <circle r="4" cx={startPos.x} cy={startPos.y} fill={linkColor} />
       {/* Main line */}
       <path
         d={points}
         stroke={linkColor}
-        strokeWidth="3"
+        strokeWidth={linkStrokeWidth}
         fill="none"
       />
       {/* Thick line to make selection easier */}
@@ -59,20 +77,15 @@ export const LinkDefault = ({
         strokeWidth="20"
         fill="none"
         strokeLinecap="round"
-        strokeOpacity={(isHovered || isSelected) ? 0.1 : 0}
+        strokeOpacity={isHovered || isSelected ? 0.1 : 0}
         onMouseEnter={() => onLinkMouseEnter({ config, linkId: link.id })}
         onMouseLeave={() => onLinkMouseLeave({ config, linkId: link.id })}
         onClick={(e) => {
-          onLinkClick({ config, linkId: link.id })
-          e.stopPropagation()
-        } }
+          onLinkClick({ config, linkId: link.id });
+          e.stopPropagation();
+        }}
       />
-      <circle
-        r="4"
-        cx={endPos.x}
-        cy={endPos.y}
-        fill={linkColor}
-      />
+      <circle r="4" cx={endPos.x} cy={endPos.y} fill={linkColor} />
     </svg>
-  )
-}
+  );
+};
