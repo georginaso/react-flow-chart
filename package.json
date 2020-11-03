@@ -1,6 +1,6 @@
 {
   "name": "@futureworkshops/react-flow-chart",
-  "version": "0.0.13",
+  "version": "0.0.0",
   "description": "A flexible, stateless flow chart library for react.",
   "main": "src/index.js",
   "repository": "git@github.com:FutureWorkshops/react-flow-chart.git",
