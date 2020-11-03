@@ -1,9 +1,9 @@
 {
-  "name": "@georginaso/react-flow-chart",
+  "name": "@futureworkshops/react-flow-chart",
   "version": "0.0.13",
   "description": "A flexible, stateless flow chart library for react.",
   "main": "src/index.js",
-  "repository": "git@github.com:georginaso/react-flow-chart.git",
+  "repository": "git@github.com:FutureWorkshops/react-flow-chart.git",
   "author": "Georgina Serra <georgina@futureworkshops.com>",
   "license": "MIT",
   "devDependencies": {
