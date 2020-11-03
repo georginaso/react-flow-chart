@@ -1,10 +1,10 @@
 {
-  "name": "@mrblenny/react-flow-chart",
+  "name": "@georginaso/react-flow-chart",
   "version": "0.0.13",
   "description": "A flexible, stateless flow chart library for react.",
   "main": "src/index.js",
-  "repository": "git@github.com:MrBlenny/react-flow-chart.git",
-  "author": "David Revay <daverevay@gmail.com>",
+  "repository": "git@github.com:georginaso/react-flow-chart.git",
+  "author": "Georgina Serra <georgina@futureworkshops.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.2",
