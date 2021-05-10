@@ -51,6 +51,8 @@ export const LinkDefault = ({
     (fromPort.properties && fromPort.properties.linkColor) || "cornflowerblue";
   const linkStrokeWidth: string =
     (fromPort.properties && fromPort.properties.linkStrokeWidth) || "3";
+  const linkStrokeDasharray: string =
+    (fromPort.properties && fromPort.properties.linkStrokeDasharray) || "none";
 
   return (
     <svg
@@ -69,6 +71,7 @@ export const LinkDefault = ({
         stroke={linkColor}
         strokeWidth={linkStrokeWidth}
         fill="none"
+        strokeDasharray={linkStrokeDasharray}
       />
       {/* Thick line to make selection easier */}
       <path
