@@ -13,6 +13,7 @@ import { ExternalReactState } from "./ExternalReactState";
 import { InternalReactState } from "./InternalReactState";
 import { LinkColors } from "./LinkColors";
 import { LinkStrokeWidths } from "./LinkStrokeWidths";
+import { LinkStrokeDasharray } from "./LinkStrokeDasharray";
 import { ReadonlyMode } from "./ReadonlyMode";
 import { SelectedSidebar } from "./SelectedSidebar";
 import { SmartRouting } from "./SmartRouting";
@@ -30,6 +31,7 @@ storiesOf("Custom Components", module)
   .add("Canvas Outer", CustomCanvasOuterDemo)
   .add("Canvas Link", () => <CustomLinkDemo />)
   .add("Link Colors", () => <LinkColors />)
+  .add("Link Dotted", () => <LinkStrokeDasharray />)
   .add("Link Stroke Widths", () => <LinkStrokeWidths />);
 
 storiesOf("Stress Testing", module).add("default", StressTestDemo);
