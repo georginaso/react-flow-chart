@@ -47,10 +47,12 @@ export const LinkDefault = ({
       : generateRightAnglePath(startPos, endPos)
     : generateCurvePath(startPos, endPos);
 
-  const linkColor: string = fromPort?.properties?.linkColor || "cornflowerblue";
-  const linkStrokeWidth: string = fromPort?.properties?.linkStrokeWidth || "3";
+  const linkColor: string =
+    (fromPort.properties && fromPort.properties.linkColor) || "cornflowerblue";
+  const linkStrokeWidth: string =
+    (fromPort.properties && fromPort.properties.linkStrokeWidth) || "3";
   const linkStrokeDasharray: string =
-    fromPort?.properties?.linkStrokeDasharray || "none";
+    (fromPort.properties && fromPort.properties.linkStrokeDasharray) || "none";
 
   return (
     <svg
